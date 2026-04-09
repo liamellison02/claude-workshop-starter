@@ -1,6 +1,6 @@
-# Claude Workshop setup, Windows (PowerShell)
-# Run in an elevated PowerShell: right-click -> Run as Administrator
-# If you hit an execution policy error, first run:
+# claude workshop setup, windows (powershell)
+# run in an elevated powershell: right-click -> Run as Administrator
+# if you hit an execution policy error, first run:
 #   Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 
 $ErrorActionPreference = "Stop"
@@ -11,21 +11,21 @@ function Warn($msg) { Write-Host "[!]  $msg" -ForegroundColor Yellow }
 
 Log "Claude Workshop setup, Windows"
 
-# Check for winget
+# check for winget
 if (-not (Get-Command winget -ErrorAction SilentlyContinue)) {
     Warn "winget not found. Install 'App Installer' from the Microsoft Store, then re-run this script."
     exit 1
 }
 Ok "winget available"
 
-# Git
+# git
 if (-not (Get-Command git -ErrorAction SilentlyContinue)) {
     Log "Installing Git..."
     winget install --id Git.Git -e --silent --accept-source-agreements --accept-package-agreements
 }
 Ok "Git ready"
 
-# Node.js 20 (LTS)
+# node.js 20 (LTS)
 if (-not (Get-Command node -ErrorAction SilentlyContinue)) {
     Log "Installing Node.js 20 LTS..."
     winget install --id OpenJS.NodeJS.LTS -e --silent --accept-source-agreements --accept-package-agreements
@@ -40,7 +40,7 @@ if (-not (Get-Command pnpm -ErrorAction SilentlyContinue)) {
 }
 Ok "pnpm $(pnpm -v)"
 
-# Python 3.12
+# python 3.12
 if (-not (Get-Command python -ErrorAction SilentlyContinue)) {
     Log "Installing Python 3.12..."
     winget install --id Python.Python.3.12 -e --silent --accept-source-agreements --accept-package-agreements
@@ -56,14 +56,14 @@ if (-not (Get-Command uv -ErrorAction SilentlyContinue)) {
 }
 Ok "uv installed"
 
-# Claude Code
+# claude code
 if (-not (Get-Command claude -ErrorAction SilentlyContinue)) {
     Log "Installing Claude Code..."
     npm install -g @anthropic-ai/claude-code
 }
 Ok "Claude Code installed"
 
-# GitHub CLI
+# github CLI
 if (-not (Get-Command gh -ErrorAction SilentlyContinue)) {
     Log "Installing GitHub CLI..."
     winget install --id GitHub.cli -e --silent --accept-source-agreements --accept-package-agreements
@@ -71,7 +71,7 @@ if (-not (Get-Command gh -ErrorAction SilentlyContinue)) {
 }
 Ok "GitHub CLI installed"
 
-# Playwright
+# playwright
 Log "Pre-installing Playwright Chromium..."
 try { npx -y playwright install chromium | Out-Null; Ok "Playwright Chromium installed" }
 catch { Warn "Playwright install deferred, run later if you pick Project B" }

@@ -3,28 +3,28 @@ name: everything-claude-code-conventions
 description: Development conventions and patterns for projects built during the GSU Claude Code workshop. Teaches Claude to use conventional commits, consistent naming, and clean code style. Activate when committing, adding features, or reviewing code in workshop projects.
 ---
 
-# Everything Claude Code Conventions
+# everything claude code conventions
 
-> Vendored from [affaan-m/everything-claude-code](https://github.com/affaan-m/everything-claude-code) for the GSU Programming Club Claude Code workshop (April 27, 2026).
+> vendored from [affaan-m/everything-claude-code](https://github.com/affaan-m/everything-claude-code) for the GSU programming club claude code workshop (April 27, 2026).
 
-## Overview
+## overview
 
-This skill teaches Claude the development patterns and conventions used in everything-claude-code, adapted for the workshop projects (portfolio site and browser price tracker).
+this skill teaches claude the development patterns and conventions used in everything-claude-code, adapted for the workshop projects (portfolio site and browser price tracker).
 
-## When to Use This Skill
+## when to use this skill
 
-Activate this skill when:
+activate this skill when:
 
-- Making commits in a workshop project
-- Adding new features following established patterns
-- Writing tests that match project conventions
-- Creating commits with proper message format
+- making commits in a workshop project
+- adding new features following established patterns
+- writing tests that match project conventions
+- creating commits with proper message format
 
-## Commit Conventions
+## commit conventions
 
-Follow **Conventional Commits** format for all commits.
+follow **conventional commits** format for all commits.
 
-### Prefixes
+### prefixes
 
 - `feat:`, a new feature
 - `fix:`, a bug fix
@@ -34,25 +34,25 @@ Follow **Conventional Commits** format for all commits.
 - `test:`, adding or updating tests
 - `chore:`, tooling, deps, build config
 
-### Message Guidelines
+### message guidelines
 
-- Keep the first line concise and descriptive (aim for ~65 chars)
-- Use **imperative mood**: "Add feature" not "Added feature"
-- Scope is optional but helpful: `feat(ui): add hero animation`
+- keep the first line concise and descriptive (aim for ~65 chars)
+- use **imperative mood**: "Add feature" not "Added feature"
+- scope is optional but helpful: `feat(ui): add hero animation`
 
-### Examples
+### examples
 
 ```
-feat(portfolio): add hero section with Magic UI sparkles
+feat(portfolio): add hero section with magic UI sparkles
 feat(scraper): support og:price meta fallback
 fix: handle missing product image in scrape result
-docs: add setup instructions for Windows
+docs: add setup instructions for windows
 chore(deps): bump next to 15.2.0
 refactor(db): extract price history query to helper
 test(scraper): add selector tests for Best Buy
 ```
 
-### Anti-examples (don't do these)
+### anti-examples (don't do these)
 
 ```
 updated stuff              # vague, lowercase, no prefix
@@ -61,44 +61,44 @@ WIP                        # not useful to anyone
 feat: Added new feature    # past tense + prefix + still vague
 ```
 
-## Code Style
+## code style
 
-### Naming
+### naming
 
-| Element | Convention | Example |
+| element | convention | example |
 |---|---|---|
-| Files | `camelCase` (JS/TS) or `snake_case` (Python) | `priceChart.tsx`, `scraper.py` |
-| React components | `PascalCase` | `PriceChart`, `HeroSection` |
-| Functions | `camelCase` (JS/TS) or `snake_case` (Python) | `fetchPrice`, `fetch_price` |
-| Classes | `PascalCase` | `PriceScraper` |
-| Constants | `SCREAMING_SNAKE_CASE` | `MAX_RETRIES`, `DEFAULT_TIMEOUT` |
-| Environment variables | `SCREAMING_SNAKE_CASE` | `DATABASE_URL` |
+| files | `camelCase` (JS/TS) or `snake_case` (python) | `priceChart.tsx`, `scraper.py` |
+| react components | `PascalCase` | `PriceChart`, `HeroSection` |
+| functions | `camelCase` (JS/TS) or `snake_case` (python) | `fetchPrice`, `fetch_price` |
+| classes | `PascalCase` | `PriceScraper` |
+| constants | `SCREAMING_SNAKE_CASE` | `MAX_RETRIES`, `DEFAULT_TIMEOUT` |
+| environment variables | `SCREAMING_SNAKE_CASE` | `DATABASE_URL` |
 
-### Import Style
+### import style
 
-**TypeScript/JavaScript:** Prefer relative imports within a package, absolute (`@/...`) imports across packages.
+**typescript/javascript:** prefer relative imports within a package, absolute (`@/...`) imports across packages.
 
 ```ts
 // within the same feature
 import { Button } from '../components/Button'
 import { useAuth } from './hooks/useAuth'
 
-// across features (Next.js @ alias)
+// across features (next.js @ alias)
 import { db } from '@/lib/db'
 ```
 
-**Python:** Absolute imports from the package root.
+**python:** absolute imports from the package root.
 
 ```python
 from app.db import get_connection
 from app.scraper import scrape_product
 ```
 
-## Error Handling
+## error handling
 
-### TypeScript/JavaScript
+### typescript/javascript
 
-Use try/catch around anything that can throw, log with context, rethrow with a user-friendly message if the error bubbles to the UI.
+use try/catch around anything that can throw, log with context, rethrow with a user-friendly message if the error bubbles to the UI.
 
 ```ts
 try {
@@ -110,9 +110,9 @@ try {
 }
 ```
 
-### Python
+### python
 
-Catch specific exceptions, never bare `except:`.
+catch specific exceptions, never bare `except:`.
 
 ```python
 try:
@@ -125,38 +125,38 @@ except Exception as e:
     raise
 ```
 
-## Testing
+## testing
 
-- **Unit tests** for pure functions and utilities
-- **Integration tests** for API routes and database queries
-- Keep test files next to the code they test, named `*.test.ts` or `test_*.py`
-- Aim for coverage of the critical path, not 100%
+- **unit tests** for pure functions and utilities
+- **integration tests** for API routes and database queries
+- keep test files next to the code they test, named `*.test.ts` or `test_*.py`
+- aim for coverage of the critical path, not 100%
 
-## Best Practices
+## best practices
 
-### Do
+### do
 
-- Use conventional commit format (`feat:`, `fix:`, etc.)
-- Use imperative mood in commit messages
-- Follow the naming conventions for the language you're in
-- Handle errors with specific exception types
-- Log errors with context (what was being attempted, with what inputs)
+- use conventional commit format (`feat:`, `fix:`, etc.)
+- use imperative mood in commit messages
+- follow the naming conventions for the language you're in
+- handle errors with specific exception types
+- log errors with context (what was being attempted, with what inputs)
 
-### Don't
+### don't
 
-- Write vague commit messages ("updated stuff", "fixes")
-- Mix camelCase and snake_case in the same file
-- Use bare `except:` in Python
-- Swallow errors without logging
-- Commit `.env` files or secrets
+- write vague commit messages ("updated stuff", "fixes")
+- mix camelCase and snake_case in the same file
+- use bare `except:` in python
+- swallow errors without logging
+- commit `.env` files or secrets
 
-## Workshop-specific notes
+## workshop-specific notes
 
-- **Project A (Portfolio):** stick to camelCase for files, PascalCase for React components
-- **Project B (Price Tracker):** backend uses snake_case (Python), frontend uses camelCase (TS)
-- **Package management:** always `pnpm` for Node, `uv` for Python, never `npm` or `pip`
-- **Before committing:** run `pnpm lint` (frontend) or `uv run ruff check` (backend) if configured
+- **project A (portfolio):** stick to camelCase for files, PascalCase for react components
+- **project B (price tracker):** backend uses snake_case (python), frontend uses camelCase (TS)
+- **package management:** always `pnpm` for node, `uv` for python, never `npm` or `pip`
+- **before committing:** run `pnpm lint` (frontend) or `uv run ruff check` (backend) if configured
 
 ---
 
-*Adapted for the GSU Programming Club Claude Code workshop. Original skill: [affaan-m/everything-claude-code](https://github.com/affaan-m/everything-claude-code).*
+*adapted for the GSU programming club claude code workshop. original skill: [affaan-m/everything-claude-code](https://github.com/affaan-m/everything-claude-code).*

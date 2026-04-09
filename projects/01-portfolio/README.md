@@ -1,38 +1,38 @@
-# Project A, Personal Portfolio Site
+# project A, personal portfolio site
 
-A deployable developer portfolio built with Next.js 15, Tailwind, and Magic UI components. Driven end-to-end by Claude Code with MCPs doing the heavy lifting (docs lookup, repo creation, deployment).
+a deployable developer portfolio built with next.js 15, tailwind, and magic UI components. driven end-to-end by claude code with MCPs doing the heavy lifting (docs lookup, repo creation, deployment).
 
-## Difficulty
-**Easy to medium**, great pick if this is your first workshop or if you want a win you can actually put on your resume tonight.
+## difficulty
+**easy to medium**, great pick if this is your first workshop or if you want a win you can actually put on your resume tonight.
 
-## Time
+## time
 ~60–75 minutes
 
-## Stack
-- Next.js 15 (App Router, TypeScript)
-- Tailwind CSS
-- Magic UI components (via the `magic` MCP)
-- Deployed to Vercel
+## stack
+- next.js 15 (App Router, typescript)
+- tailwind CSS
+- magic UI components (via the `magic` MCP)
+- deployed to vercel
 
 ## MCPs used
-- `context7`, live Next.js and Magic UI docs
+- `context7`, live next.js and magic UI docs
 - `github`, create the repo and push
 - `vercel`, deploy
-- `magic`, Magic UI component catalog
+- `magic`, magic UI component catalog
 
-## Subagents used
+## subagents used
 - `ui-designer`, for styling decisions and component picks
 
-## Skills used
+## skills used
 - `everything-claude-code-conventions`, consistent commit messages
 
-## How to start
-1. Fill in the brackets in [`PROMPT.md`](./PROMPT.md)
-2. Launch Claude Code from this folder: `claude`
-3. Paste your customized prompt
-4. Follow along and iterate
+## how to start
+1. fill in the brackets in [`PROMPT.md`](./PROMPT.md)
+2. launch claude code from this folder: `claude`
+3. paste your customized prompt
+4. follow along and iterate
 
-Full walkthrough is in the root [`GUIDE.md`](../../GUIDE.md) → Section 6.
+full walkthrough is in the root [`GUIDE.md`](../../GUIDE.md) → section 6.
 
-## When you're done
-Your live URL should work on both desktop and mobile, feature 3 real projects from your own work, and use at least 2 Magic UI components. See the "Done checklist" at the bottom of `PROMPT.md`.
+## when you're done
+your live URL should work on both desktop and mobile, feature 3 real projects from your own work, and use at least 2 magic UI components. see the "done checklist" at the bottom of `PROMPT.md`.

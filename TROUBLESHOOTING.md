@@ -1,33 +1,33 @@
-# Troubleshooting
+# troubleshooting
 
-Common problems from past workshops, in rough order of frequency.
+common problems from past workshops, in rough order of frequency.
 
-## Setup issues
+## setup issues
 
 ### `claude: command not found` after running the setup script
 
-**Cause:** Your shell's `PATH` wasn't reloaded.
+**cause:** your shell's `PATH` wasn't reloaded.
 
-**Fix:**
+**fix:**
 ```bash
-# Mac/Linux
+# mac/linux
 source ~/.zshrc   # or ~/.bashrc
-# Or just close and reopen your terminal
+# or just close and reopen your terminal
 
-# Windows
-# Close and reopen PowerShell
+# windows
+# close and reopen PowerShell
 ```
 
-If still broken:
+if still broken:
 ```bash
-# Check where claude was installed
+# check where claude was installed
 npm root -g
-# Add that bin dir to your PATH manually
+# add that bin dir to your PATH manually
 ```
 
 ### `pnpm: command not found`
 
-You skipped or broke the pnpm install step. Manually:
+you skipped or broke the pnpm install step. manually:
 ```bash
 npm install -g pnpm
 ```
@@ -36,34 +36,34 @@ npm install -g pnpm
 
 ```bash
 curl -LsSf https://astral.sh/uv/install.sh | sh
-# Then reload your shell
+# then reload your shell
 ```
 
-Windows:
+windows:
 ```powershell
 irm https://astral.sh/uv/install.ps1 | iex
 ```
 
-### Setup script fails on Homebrew install (Mac)
+### setup script fails on homebrew install (mac)
 
-Run it manually first, then re-run the setup script:
+run it manually first, then re-run the setup script:
 ```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
 ### `nvm: command not found` after install
 
-`nvm` is shell-scoped, it gets added to `~/.zshrc` or `~/.bashrc`. Close and reopen your terminal, or:
+`nvm` is shell-scoped, it gets added to `~/.zshrc` or `~/.bashrc`. close and reopen your terminal, or:
 ```bash
 source ~/.nvm/nvm.sh
 ```
 
-### Windows: "script cannot be loaded because running scripts is disabled"
+### windows: "script cannot be loaded because running scripts is disabled"
 
 ```powershell
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 ```
-Then re-run the setup script.
+then re-run the setup script.
 
 ---
 
@@ -71,66 +71,66 @@ Then re-run the setup script.
 
 ### `/mcp` shows servers as disconnected
 
-**Most common cause:** You're running `claude` from the wrong directory. `.mcp.json` is per-directory. Make sure you're in the repo root:
+**most common cause:** you're running `claude` from the wrong directory. `.mcp.json` is per-directory. make sure you're in the repo root:
 
 ```bash
 cd claude-workshop-starter
 claude
 ```
 
-Then inside Claude Code:
+then inside claude code:
 ```
 /mcp
 ```
 
 ### `claude mcp list` shows nothing
 
-Same fix, run it from the repo root.
+same fix, run it from the repo root.
 
-### GitHub MCP: "authentication failed"
+### github MCP: "authentication failed"
 
-The GitHub MCP uses the `gh` CLI's credentials. Check:
+the github MCP uses the `gh` CLI's credentials. check:
 ```bash
 gh auth status
 ```
 
-If not logged in:
+if not logged in:
 ```bash
 gh auth login
-# Pick: GitHub.com → HTTPS → Login with web browser
+# pick: GitHub.com → HTTPS → Login with web browser
 ```
 
-Alternatively, set a personal access token in `.env`:
+alternatively, set a personal access token in `.env`:
 ```
 GITHUB_TOKEN=ghp_xxxxxxxxxxxx
 ```
-Get one at https://github.com/settings/tokens (classic, with `repo` scope).
+get one at https://github.com/settings/tokens (classic, with `repo` scope).
 
-### Vercel MCP: "not authenticated"
+### vercel MCP: "not authenticated"
 
-First time you use it, the MCP walks you through a device-code auth flow. You'll get a URL to open in your browser. Make sure you're logged into vercel.com in that browser first.
+first time you use it, the MCP walks you through a device-code auth flow. you'll get a URL to open in your browser. make sure you're logged into vercel.com in that browser first.
 
-### Playwright MCP: "browser not installed" or "executable doesn't exist"
+### playwright MCP: "browser not installed" or "executable doesn't exist"
 
 ```bash
 npx -y playwright install chromium
 ```
 
-On Linux you may also need system deps:
+on linux you may also need system deps:
 ```bash
 npx -y playwright install --with-deps chromium
 ```
 
-### Magic MCP: doesn't return any components
+### magic MCP: doesn't return any components
 
-Make sure you're actually asking Claude to use it. Try:
+make sure you're actually asking claude to use it. try:
 > "Use the magic MCP to list available hero section components."
 
-If that still doesn't work, check `claude mcp list`, if `magic` isn't there, your `.mcp.json` didn't load (you're in the wrong directory).
+if that still doesn't work, check `claude mcp list`, if `magic` isn't there, your `.mcp.json` didn't load (you're in the wrong directory).
 
 ---
 
-## Project A, Portfolio
+## project A, portfolio
 
 ### `pnpm dev` fails with "Cannot find module"
 
@@ -140,23 +140,23 @@ pnpm install
 pnpm dev
 ```
 
-### Vercel build fails with "Module not found" but it works locally
+### vercel build fails with "Module not found" but it works locally
 
-Almost always a case-sensitivity issue. macOS is case-insensitive, Linux (Vercel's build env) isn't.
+almost always a case-sensitivity issue. macOS is case-insensitive, linux (vercel's build env) isn't.
 
-**Check:**
+**check:**
 ```bash
-# This import:
+# this import:
 import Button from './components/button'
-# Won't match this file:
+# won't match this file:
 components/Button.tsx
 ```
 
-Fix the import or rename the file so cases match.
+fix the import or rename the file so cases match.
 
-### Magic UI components look broken / unstyled
+### magic UI components look broken / unstyled
 
-Make sure Tailwind is actually processing the Magic UI files. Check your `tailwind.config.ts`:
+make sure tailwind is actually processing the magic UI files. check your `tailwind.config.ts`:
 ```ts
 content: [
   "./src/**/*.{ts,tsx}",
@@ -166,29 +166,29 @@ content: [
 
 ---
 
-## Project B, Price Tracker
+## project B, price tracker
 
 ### `uv run` fails with "no virtual environment found"
 
-From the backend folder:
+from the backend folder:
 ```bash
 uv sync
-# Then
+# then
 uv run uvicorn app.main:app --reload
 ```
 
-### Playwright scrape times out
+### playwright scrape times out
 
-**Step 1:** Use the `playwright` MCP to open the same URL interactively and see what's actually rendered. You're probably hitting a CAPTCHA page, not your target page.
+**step 1:** use the `playwright` MCP to open the same URL interactively and see what's actually rendered. you're probably hitting a CAPTCHA page, not your target page.
 
-**Step 2:** If it IS the right page, your selector is wrong. Ask Claude:
+**step 2:** if it IS the right page, your selector is wrong. ask claude:
 > "Use the playwright MCP to open [url] and tell me the most stable CSS selector for the product price."
 
-**Step 3:** Amazon, Walmart, and Best Buy have aggressive bot detection. For the workshop, try a smaller site or use the og-meta fallback.
+**step 3:** Amazon, Walmart, and Best Buy have aggressive bot detection. for the workshop, try a smaller site or use the og-meta fallback.
 
 ### CORS error from the frontend calling the backend
 
-Add CORS middleware to FastAPI:
+add CORS middleware to fastapi:
 ```python
 from fastapi.middleware.cors import CORSMiddleware
 app.add_middleware(
@@ -199,62 +199,62 @@ app.add_middleware(
 )
 ```
 
-### SQLite "database is locked"
+### sqlite "database is locked"
 
-You have two processes writing at once. Stop one of them. For the workshop, a single uvicorn process is enough.
+you have two processes writing at once. stop one of them. for the workshop, a single uvicorn process is enough.
 
 ---
 
-## Claude Code issues
+## claude code issues
 
-### "Rate limit exceeded" or "insufficient credits"
+### "rate limit exceeded" or "insufficient credits"
 
-Check your balance at https://console.anthropic.com → Billing. If you're at $0, the credits from check-in haven't been applied yet, grab a floater.
+check your balance at https://console.anthropic.com → Billing. if you're at $0, the credits from check-in haven't been applied yet, grab a floater.
 
-### Subagents aren't loading
+### subagents aren't loading
 
 ```
 /agents
 ```
-Should list all 5. If empty, check that `.claude/agents/*.md` files exist in your current directory. They're per-directory, just like MCPs.
+should list all 5. if empty, check that `.claude/agents/*.md` files exist in your current directory. they're per-directory, just like MCPs.
 
-### Skills aren't loading
+### skills aren't loading
 
 ```
 /skills
 ```
-Should list `everything-claude-code-conventions`. If not, the skill file is missing from `.claude/skills/`, re-clone the repo or copy the file back.
+should list `everything-claude-code-conventions`. if not, the skill file is missing from `.claude/skills/`, re-clone the repo or copy the file back.
 
-### Claude Code is just… slow
+### claude code is just… slow
 
-First response in a session builds context and is always slower. Subsequent responses should be faster. If it's stuck for 2+ minutes, Ctrl+C and try a smaller prompt.
+first response in a session builds context and is always slower. subsequent responses should be faster. if it's stuck for 2+ minutes, Ctrl+C and try a smaller prompt.
 
 ---
 
-## Deploy issues
+## deploy issues
 
-### Vercel build succeeds but the site is blank
+### vercel build succeeds but the site is blank
 
-Open DevTools → Console on the deployed URL. You're probably hitting a client-side error. Common culprits:
-- Env var that's set locally but not on Vercel
-- An API route that works locally but not in production
-- Hardcoded `localhost:3000` somewhere
+open DevTools → Console on the deployed URL. you're probably hitting a client-side error. common culprits:
+- env var that's set locally but not on vercel
+- an API route that works locally but not in production
+- hardcoded `localhost:3000` somewhere
 
-### Vercel deploy works, domain shows "DEPLOYMENT_NOT_FOUND"
+### vercel deploy works, domain shows "DEPLOYMENT_NOT_FOUND"
 
-Wait 30 seconds. Vercel's edge network takes a moment to propagate.
+wait 30 seconds. vercel's edge network takes a moment to propagate.
 
-### Can't find the live URL
+### can't find the live URL
 
 ```
-# Tell Claude:
+# tell claude:
 > Use the vercel MCP to list my projects and show me the production URL for <project-name>.
 ```
 
 ---
 
-## Still stuck?
+## still stuck?
 
-**Raise your hand.** That's what the floaters are for. Seriously, don't burn 20 minutes on a setup issue when someone can fix it in 2.
+**raise your hand.** that's what the floaters are for. seriously, don't burn 20 minutes on a setup issue when someone can fix it in 2.
 
-After the workshop, drop it in the Discord and we'll get back to you.
+after the workshop, drop it in the discord and we'll get back to you.

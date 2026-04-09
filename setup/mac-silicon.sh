@@ -1,19 +1,23 @@
 #!/usr/bin/env bash
-# Claude Workshop setup, macOS Apple Silicon (M1/M2/M3/M4)
+# claude workshop setup, macOS apple silicon (M1/M2/M3/M4)
 set -euo pipefail
 
-BLUE='\033[0;34m'; GREEN='\033[0;32m'; YELLOW='\033[1;33m'; RED='\033[0;31m'; NC='\033[0m'
-log()  { echo -e "${BLUE}==>${NC} $1"; }
-ok()   { echo -e "${GREEN}✓${NC} $1"; }
+BLUE='\033[0;34m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+RED='\033[0;31m'
+NC='\033[0m'
+log() { echo -e "${BLUE}==>${NC} $1"; }
+ok() { echo -e "${GREEN}✓${NC} $1"; }
 warn() { echo -e "${YELLOW}!${NC} $1"; }
-err()  { echo -e "${RED}✗${NC} $1" >&2; }
+err() { echo -e "${RED}✗${NC} $1" >&2; }
 
 BREW_PREFIX="/opt/homebrew"
 export PATH="$BREW_PREFIX/bin:$PATH"
 
 log "Claude Workshop setup, macOS Apple Silicon"
 
-# Homebrew
+# homebrew
 if ! command -v brew >/dev/null 2>&1; then
   log "Installing Homebrew..."
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -21,7 +25,7 @@ if ! command -v brew >/dev/null 2>&1; then
 fi
 ok "Homebrew ready"
 
-# Node via nvm
+# node via nvm
 if ! command -v nvm >/dev/null 2>&1 && [ ! -d "$HOME/.nvm" ]; then
   log "Installing nvm..."
   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
@@ -42,7 +46,7 @@ if ! command -v pnpm >/dev/null 2>&1; then
 fi
 ok "pnpm $(pnpm -v)"
 
-# Python + uv
+# python + uv
 if ! command -v python3 >/dev/null 2>&1; then
   brew install python@3.12
 fi
@@ -55,21 +59,21 @@ if ! command -v uv >/dev/null 2>&1; then
 fi
 ok "uv $(uv --version | cut -d' ' -f2)"
 
-# Claude Code
+# claude code
 if ! command -v claude >/dev/null 2>&1; then
   log "Installing Claude Code..."
   npm install -g @anthropic-ai/claude-code
 fi
 ok "Claude Code installed"
 
-# GitHub CLI
+# github CLI
 if ! command -v gh >/dev/null 2>&1; then
   log "Installing GitHub CLI..."
   brew install gh
 fi
 ok "GitHub CLI $(gh --version | head -1 | cut -d' ' -f3)"
 
-# Playwright browsers (for Project B)
+# playwright browsers (for project B)
 log "Pre-installing Playwright Chromium (for Project B)..."
 npx -y playwright install chromium >/dev/null 2>&1 || warn "Playwright install deferred, run later if you pick Project B"
 
