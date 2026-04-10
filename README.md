@@ -5,7 +5,7 @@ starter repo for the **progsu x claude code workshop** on 04-27-2026
 ## 60-second quickstart
 
 ```bash
-git clone https://github.com/<org>/claude-workshop-starter.git
+git clone https://github.com/liamellison02/claude-workshop-starter.git
 cd claude-workshop-starter
 
 # pick your OS
