@@ -110,6 +110,16 @@ get one at https://github.com/settings/tokens (classic, with `repo` scope).
 
 first time you use it, the MCP walks you through a device-code auth flow. you'll get a URL to open in your browser. make sure you're logged into vercel.com in that browser first.
 
+### vercel MCP: fails to connect
+
+after running the setup shell script and opening up claude -> /mcp, you may see that the Vercel MCP says "failed". you can fix this with the following:
+
+```bash
+claude mcp add --transport http vercel https://mcp.vercel.com
+```
+
+then restart claude code and check `/mcp` — vercel should show as connected. note: it may now show as "not authenticated" instead of "failed" — that's progress! follow the entry above to resolve the authentication step.
+
 ### playwright MCP: "browser not installed" or "executable doesn't exist"
 
 ```bash
