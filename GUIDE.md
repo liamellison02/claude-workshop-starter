@@ -57,17 +57,17 @@ pick the one that matches your machine:
 
 **macOS (apple silicon, M1/M2/M3/M4):**
 ```bash
-./setup/setup-mac-silicon.sh
+./setup/mac-silicon.sh
 ```
 
 **macOS (intel):**
 ```bash
-./setup/setup-mac-intel.sh
+./setup/mac-intel.sh
 ```
 
 **linux:**
 ```bash
-./setup/setup-linux.sh
+./setup/linux.sh
 ```
 
 **windows (powerShell, run as admin):**
